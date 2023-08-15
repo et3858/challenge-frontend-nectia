@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import InputElement from "../components/InputElement";
+
+
+
+import { UserDispatchContext } from "../contexts/UserContext";
 
 
 // auth-challenge-nectia
@@ -13,6 +17,8 @@ const USERS = [
 
 
 function Login() {
+    const setUserDetails = useContext(UserDispatchContext);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -36,10 +42,16 @@ function Login() {
 
 
     const fetchAuth = () => {
+
         fetch(MOCK_URL)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+
+                setUserDetails({
+                    username: "foo",
+                    token: "Bearer lol",
+                });
             })
             .catch(response => {
                 console.warn(response);
