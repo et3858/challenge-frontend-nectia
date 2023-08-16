@@ -1,8 +1,35 @@
-# React + Vite
+# Nectia challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is only a project as a part of nectia's challenge. It uses React in Vite.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## Install modules and dependencies
+
+```sh
+npm install
+```
+
+## Run in dev mode
+
+```sh
+npm run dev
+```
+
+## Run in prod mode
+
+```sh
+npm run preview
+```
+
+## Available paths
+
+- `/`
+- `/login`
+- `/home`
+
+## To log in, use one of the follow options
+
+- **Username**: johndoe, **Password**: john123
+- **Username**: edu, **Password**: edu456
