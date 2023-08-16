@@ -7,12 +7,20 @@ import Home from './views/Home';
 import NotFound from './views/NotFound';
 
 
+import ProtectedRoute from './components/ProtectedRoute';
+
+
 function App() {
     return (
         <Routes>
             <Route index element={<AppComponent />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
+
+            {/* Protected routes for user already logged in */}
+            <Route element={<ProtectedRoute user={null} />}>
+                <Route path="/home" element={<Home />} />
+            </Route>
+
             <Route path="/*" element={<NotFound />} />
         </Routes>
     );
