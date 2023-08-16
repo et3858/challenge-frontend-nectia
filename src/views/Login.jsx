@@ -16,7 +16,7 @@ const USERS = [
 
 function Login() {
     const navigate = useNavigate();
-    const setUserDetails = useContext(UserDispatchContext);
+    const { login } = useContext(UserDispatchContext);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -46,7 +46,7 @@ function Login() {
             .then(data => {
                 console.log(data);
 
-                setUserDetails({
+                login({
                     username: "foo",
                     token: "Bearer lol",
                 });
