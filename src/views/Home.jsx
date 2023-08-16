@@ -27,6 +27,16 @@ function Home() {
     };
 
 
+    const convertToHumanDate = (date) => (
+        // From the UTC string format, extract only the day, month and year and concat them
+        new Date(`${date}T00:00:00`)
+            .toUTCString()
+            .split(" ")
+            .splice(1, 3)
+            .join(" ")
+    );
+
+
     useEffect(() => {
         const options = {
             headers: {
@@ -64,7 +74,7 @@ function Home() {
                             <td className="border-y border-slate-600 p-2">{e.title}</td>
                             <td className="border-y border-slate-600 p-2">{e.author}</td>
                             <td className="border-y border-slate-600 p-2">{e.genre}</td>
-                            <td className="border-y border-slate-600 p-2">{e.publication_date}</td>
+                            <td className="border-y border-slate-600 p-2">{convertToHumanDate(e.publication_date)}</td>
                             <td className="border-y border-slate-600 p-2">
                                 <div className="flex gap-2">
                                     <button
