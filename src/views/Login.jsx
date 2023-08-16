@@ -5,7 +5,7 @@ import { UserDispatchContext } from "../contexts/UserContext";
 
 
 // auth-challenge-nectia
-const MOCK_URL = "https://run.mocky.io/v3/c2bc0785-bbe0-4d20-955d-083d8c6a3c36";
+const MOCK_URL = "https://run.mocky.io/v3/0814d59c-0602-43e4-ad27-db41b1e89d0d";
 
 
 const USERS = [
@@ -44,12 +44,7 @@ function Login() {
         fetch(MOCK_URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-
-                login({
-                    username: "foo",
-                    token: "Bearer lol",
-                });
+                login(data.auth);
 
                 navigate("/home");
             })

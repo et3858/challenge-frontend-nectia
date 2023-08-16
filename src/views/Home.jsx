@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 
 // books-challenge-nectia
-const MOCK_URL = "https://run.mocky.io/v3/c4498f84-2ef6-4a34-b456-1e7333e0eba0";
+const MOCK_URL = "https://run.mocky.io/v3/13768651-741e-4d2a-9f5e-61f4282f7d3e";
 
 
 function Home() {
+    const userDetails = useContext(UserContext);
     const [books, setBooks] = useState([]);
 
 
@@ -15,12 +17,24 @@ function Home() {
 
 
     const handleDeleteClick = (e) => {
-        // code
+        const booksCopy = books.slice();
+        const foundBookIndex = booksCopy.findIndex(book => book.id === e.id);
+
+        if (foundBookIndex >= 0) {
+            booksCopy.splice(foundBookIndex, 1);
+            setBooks(booksCopy);
+        }
     };
 
 
     useEffect(() => {
-        fetch(MOCK_URL)
+        const options = {
+            headers: {
+                "Authorization": `Bearer ${userDetails.token}`,
+            },
+        };
+
+        fetch(MOCK_URL, options)
             .then(response => response.json())
             .then(data => {
                 setBooks(data.books)
