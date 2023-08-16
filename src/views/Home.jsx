@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
+import LoadingElement from "../components/LoadingElement";
 
 
 // books-challenge-nectia
@@ -9,6 +10,8 @@ const MOCK_URL = "https://run.mocky.io/v3/13768651-741e-4d2a-9f5e-61f4282f7d3e";
 function Home() {
     const userDetails = useContext(UserContext);
     const [books, setBooks] = useState([]);
+    const [loading,  setLoading] = useState(true);
+    const [showBooks, setShowBooks] = useState(false);
 
 
     const handleEditClick = (e) => {
@@ -47,57 +50,63 @@ function Home() {
         fetch(MOCK_URL, options)
             .then(response => response.json())
             .then(data => {
-                setBooks(data.books)
+                setBooks(data.books);
+                setShowBooks(true);
             })
             .catch(response => {
                 console.warn(response);
-            });
+            })
+            .finally(() => setLoading(false));
     }, []);
 
 
     return (
         <>
-            <table className="border-collapse border border-slate-500 border-spacing-2 text-left">
-                <thead>
-                    <tr>
-                        <th className="border-y border-slate-600 p-2">Title</th>
-                        <th className="border-y border-slate-600 p-2">Author</th>
-                        <th className="border-y border-slate-600 p-2">Genre</th>
-                        <th className="border-y border-slate-600 p-2">Publication date</th>
-                        <th className="border-y border-slate-600 p-2">Options</th>
-                    </tr>
-                </thead>
+            {loading ? <LoadingElement /> : null}
 
-                <tbody>
-                    {books.map((e, i) => (
-                        <tr key={e.id} className={i % 2 === 0 ? 'bg-slate-800' : ''}>
-                            <td className="border-y border-slate-600 p-2">{e.title}</td>
-                            <td className="border-y border-slate-600 p-2">{e.author}</td>
-                            <td className="border-y border-slate-600 p-2">{e.genre}</td>
-                            <td className="border-y border-slate-600 p-2">{convertToHumanDate(e.publication_date)}</td>
-                            <td className="border-y border-slate-600 p-2">
-                                <div className="flex gap-2">
-                                    <button
-                                        type="button"
-                                        className="bg-blue-400 text-white"
-                                        onClick={() => handleEditClick(e)}
-                                    >
-                                        Edit
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="bg-red-500 text-white"
-                                        onClick={() => handleDeleteClick(e)}
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </td>
+            {showBooks ?
+                <table className="border-collapse border border-slate-500 border-spacing-2 text-left">
+                    <thead>
+                        <tr>
+                            <th className="border-y border-slate-600 p-2">Title</th>
+                            <th className="border-y border-slate-600 p-2">Author</th>
+                            <th className="border-y border-slate-600 p-2">Genre</th>
+                            <th className="border-y border-slate-600 p-2">Publication date</th>
+                            <th className="border-y border-slate-600 p-2">Options</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        {books.map((e, i) => (
+                            <tr key={e.id} className={i % 2 === 0 ? 'bg-slate-800' : ''}>
+                                <td className="border-y border-slate-600 p-2">{e.title}</td>
+                                <td className="border-y border-slate-600 p-2">{e.author}</td>
+                                <td className="border-y border-slate-600 p-2">{e.genre}</td>
+                                <td className="border-y border-slate-600 p-2">{convertToHumanDate(e.publication_date)}</td>
+                                <td className="border-y border-slate-600 p-2">
+                                    <div className="flex gap-2">
+                                        <button
+                                            type="button"
+                                            className="bg-blue-400 text-white"
+                                            onClick={() => handleEditClick(e)}
+                                        >
+                                            Edit
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            className="bg-red-500 text-white"
+                                            onClick={() => handleDeleteClick(e)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            : null}
         </>
     );
 }
