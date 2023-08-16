@@ -1,16 +1,12 @@
 import React, { createContext, useState } from 'react';
 
-const UserContext = createContext({ user: {} });
 
-
+const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
 
 
 function UserProvider({ children }) {
-    const [userDetails, setUserDetails] = useState({
-        username: "",
-        token: "",
-    });
+    const [userDetails, setUserDetails] = useState(null);
 
 
     return (

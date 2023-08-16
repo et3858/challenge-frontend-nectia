@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import InputElement from "../components/InputElement";
-
-
-
+import { useNavigate } from "react-router-dom";
 import { UserDispatchContext } from "../contexts/UserContext";
 
 
@@ -17,6 +15,7 @@ const USERS = [
 
 
 function Login() {
+    const navigate = useNavigate();
     const setUserDetails = useContext(UserDispatchContext);
 
     const [username, setUsername] = useState('');
@@ -42,7 +41,6 @@ function Login() {
 
 
     const fetchAuth = () => {
-
         fetch(MOCK_URL)
             .then(response => response.json())
             .then(data => {
@@ -52,6 +50,8 @@ function Login() {
                     username: "foo",
                     token: "Bearer lol",
                 });
+
+                navigate("/home");
             })
             .catch(response => {
                 console.warn(response);
