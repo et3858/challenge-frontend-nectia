@@ -10,6 +10,7 @@ import {
 import { UserContext } from "../contexts/UserContext";
 import LoadingElement from "../components/LoadingElement";
 import InputElement from "../components/InputElement";
+import EditBook from "../components/EditBook";
 
 
 // books-challenge-nectia
@@ -51,6 +52,24 @@ function Home() {
     const [{ pageIndex, pageSize }, setPagination] = useState({ pageIndex: 0, pageSize: PAGE_SIZES[1] });
     const pagination = useMemo(() => ({ pageIndex, pageSize }), [pageIndex, pageSize]);
 
+    const [bookToEdit, setBookToEdit] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleCloseClick = () => {
+        setOpenDialog(false);
+        setBookToEdit(null);
+    };
+
+
+    const handleSave = () => {
+        const booksCopy = books.slice();
+        const foundBookIndex = booksCopy.findIndex(book => book.id === bookToEdit.id);
+        booksCopy[foundBookIndex] = bookToEdit;
+        setBooks(booksCopy);
+
+        handleCloseClick();
+    };
+
 
     const table = useReactTable({
         columns: COLUMNS,
@@ -71,7 +90,8 @@ function Home() {
 
 
     const handleEditClick = (e) => {
-        // code
+        setBookToEdit(e);
+        setOpenDialog(true);
     };
 
 
@@ -228,6 +248,16 @@ function Home() {
                     </tbody>
                 </table>
                 </>
+            : null}
+
+            {bookToEdit ?
+                <EditBook
+                    data={bookToEdit}
+                    setData={setBookToEdit}
+                    isOpen={openDialog}
+                    handleSave={handleSave}
+                    handleClose={handleCloseClick}
+                />
             : null}
         </>
     );
