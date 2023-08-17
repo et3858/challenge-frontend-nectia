@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import InputElement from "../components/InputElement";
 import { useNavigate } from "react-router-dom";
 import { UserDispatchContext } from "../contexts/UserContext";
+import InputElement from "../components/InputElement";
+import LoadingElement from "../components/LoadingElement";
 
 
 // auth-challenge-nectia
@@ -48,8 +49,9 @@ function Login() {
 
                 navigate("/home");
             })
-            .catch(response => {
-                console.warn(response);
+            .catch(() => {
+                setErrorMessages({ name: 'server', message: "Sorry, something went wrong. Try it later" });
+                setIsSubmitted(false);
             });
     };
 
@@ -109,12 +111,15 @@ function Login() {
                             {renderErrorMessage('password')}
                         </div>
 
-                        <input
+                        <button
                             type="submit"
-                            value="Log in"
-                            className="bg-red-500 text-white rounded-xl p-2 font-bold uppercase"
+                            className="bg-red-500 text-white rounded-xl p-2 font-bold uppercase cursor-pointer"
                             disabled={!(username && password) || isSubmitted}
-                        />
+                        >
+                            {isSubmitted ? <LoadingElement /> : "Log in"}
+                        </button>
+
+                        {renderErrorMessage('server')}
                     </form>
                 </div>
                 <div />
