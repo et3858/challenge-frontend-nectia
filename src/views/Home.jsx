@@ -7,6 +7,14 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table';
+import {
+    BsFillTrash3Fill,
+    BsPencilSquare,
+    BsChevronBarLeft,
+    BsChevronBarRight,
+    BsChevronLeft,
+    BsChevronRight,
+} from 'react-icons/bs';
 import { UserContext } from "../contexts/UserContext";
 import LoadingElement from "../components/LoadingElement";
 import InputElement from "../components/InputElement";
@@ -159,13 +167,21 @@ function Home() {
                             className="bg-gray-500 rounded-full flex-none"
                             onClick={() => table.setPageIndex(0)}
                             disabled={!table.getCanPreviousPage()}
-                        >{'|<'}</button>
+                            data-toggle="tooltip"
+                            title="Go to start"
+                        >
+                            <BsChevronBarLeft />
+                        </button>
                         <button
                             type="button"
                             className="bg-gray-500 rounded-full flex-none"
                             onClick={() => table.previousPage()}
                             disabled={!table.getCanPreviousPage()}
-                        >{'<'}</button>
+                            data-toggle="tooltip"
+                            title="Go to previous page"
+                        >
+                            <BsChevronLeft />
+                        </button>
 
                         <span>
                             Page&nbsp;
@@ -179,13 +195,21 @@ function Home() {
                             className="bg-gray-500 rounded-full flex-none"
                             onClick={() => table.nextPage()}
                             disabled={!table.getCanNextPage()}
-                        >{'>'}</button>
+                            data-toggle="tooltip"
+                            title="Go to next page"
+                        >
+                            <BsChevronRight />
+                        </button>
                         <button
                             type="button"
                             className="bg-gray-500 rounded-full flex-none"
                             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                             disabled={!table.getCanNextPage()}
-                        >{'>|'}</button>
+                            data-toggle="tooltip"
+                            title="Go to finish"
+                        >
+                            <BsChevronBarRight />
+                        </button>
                     </div>
 
                     <div className="flex-none">
@@ -235,13 +259,21 @@ function Home() {
                                             type="button"
                                             className="bg-blue-400 text-white py-2"
                                             onClick={() => handleEditClick(row.original)}
-                                        >Edit</button>
+                                            data-toggle="tooltip"
+                                            title="Edit"
+                                        >
+                                            <BsPencilSquare />
+                                        </button>
 
                                         <button
                                             type="button"
                                             className="bg-red-500 text-white py-2"
                                             onClick={() => handleDeleteClick(row.original)}
-                                        >Delete</button>
+                                            data-toggle="tooltip"
+                                            title="Delete"
+                                        >
+                                            <BsFillTrash3Fill />
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
