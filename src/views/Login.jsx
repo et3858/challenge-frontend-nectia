@@ -6,7 +6,7 @@ import LoadingElement from "../components/LoadingElement";
 
 
 // auth-challenge-nectia
-const MOCK_URL = "https://run.mocky.io/v3/0814d59c-0602-43e4-ad27-db41b1e89d0d";
+const MOCK_URL = "https://run.mocky.io/v3/5b272991-011b-4e9a-96cf-5d8ec5bf909f";
 
 
 const USERS = [
