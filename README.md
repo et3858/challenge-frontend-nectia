@@ -17,10 +17,10 @@ npm install
 npm run dev
 ```
 
-## Run in prod mode
+## Compile and run in prod mode
 
 ```sh
-npm run preview
+npm run build && npm run preview
 ```
 
 ## Available paths
