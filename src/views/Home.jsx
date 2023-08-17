@@ -47,6 +47,7 @@ function Home() {
     const [books, setBooks] = useState([]);
     const [loading,  setLoading] = useState(true);
     const [showBooks, setShowBooks] = useState(false);
+    const [showError, setShowError] = useState(false);
     const [sorting, setSorting] = useState([]);
     const [filtering, setFiltering] = useState('');
     const [{ pageIndex, pageSize }, setPagination] = useState({ pageIndex: 0, pageSize: PAGE_SIZES[1] });
@@ -119,8 +120,8 @@ function Home() {
                 setBooks(data.books);
                 setShowBooks(true);
             })
-            .catch(response => {
-                console.warn(response);
+            .catch(() => {
+                setShowError(true);
             })
             .finally(() => setLoading(false));
     }, []);
@@ -151,8 +152,8 @@ function Home() {
 
             {showBooks ?
                 <>
-                <div className="flex flex-row gap-4 items-center mb-2">
-                    <div className="flex flex-row items-center gap-2 mb-2">
+                <div className="flex flex-row gap-4 items-center mb-4">
+                    <div className="flex flex-row gap-2 items-center">
                         <button
                             type="button"
                             className="bg-gray-500 rounded-full flex-none"
@@ -200,7 +201,7 @@ function Home() {
                     </div>
                 </div>
 
-                <div className="mb-2">
+                <div className="mb-4">
                     <InputElement
                         type='text'
                         value={filtering}
@@ -258,6 +259,12 @@ function Home() {
                     handleSave={handleSave}
                     handleClose={handleCloseClick}
                 />
+            : null}
+
+            {showError ?
+                <div className="border-2 border-solid border-red-500 p-4 bg-red-900 text-red-200 rounded-xl text-center">
+                    Sorry, something went wrong. Try it later
+                </div>
             : null}
         </>
     );
