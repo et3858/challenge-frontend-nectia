@@ -15,7 +15,7 @@ function App() {
 
     return (
         <Routes>
-            <Route index element={<AppComponent />} />
+            <Route index element={<Login />} />
             <Route path="/login" element={<Login />} />
 
             {/* Protected routes for user already logged in */}
