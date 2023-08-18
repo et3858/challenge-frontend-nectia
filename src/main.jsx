@@ -8,8 +8,8 @@ import './index.css';
 const basename = import.meta.env.DEV ? '/' : '/challenge-frontend-nectia/';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <UserProvider basename={basename}>
-        <BrowserRouter>
+    <UserProvider>
+        <BrowserRouter basename={basename}>
             <React.StrictMode>
                 <App />
             </React.StrictMode>
