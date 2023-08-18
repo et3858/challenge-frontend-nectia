@@ -29,7 +29,9 @@ npm run build && npm run preview
 - `/login`
 - `/home`
 
-## To log in, use one of the follow options
+## To log in, use one of the following options
 
 - **Username**: johndoe, **Password**: john123
 - **Username**: edu, **Password**: edu456
+
+#### [Demo](https://et3858.github.io/challenge-frontend-nectia)
