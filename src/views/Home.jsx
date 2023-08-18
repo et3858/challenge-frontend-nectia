@@ -214,7 +214,7 @@ function Home() {
 
                     <div className="flex-none">
                         <select
-                            className="border cursor-pointer rounded-xl w-full p-2 bg-gray-700 text-whote"
+                            className="appearance-none border cursor-pointer rounded-xl w-full p-2 bg-gray-700 text-white"
                             value={table.getState().pagination.pageSize}
                             onChange={e => table.setPageSize(Number(e.target.value))}
                         >
