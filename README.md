@@ -34,4 +34,4 @@ npm run build && npm run preview
 - **Username**: johndoe, **Password**: john123
 - **Username**: edu, **Password**: edu456
 
-#### [Demo](https://et3858.github.io/challenge-frontend-nectia)
+#### [Demo](https://main.d2ewv1sekjofmq.amplifyapp.com/)
