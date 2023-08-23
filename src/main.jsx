@@ -5,7 +5,6 @@ import { UserProvider } from './contexts/UserContext';
 import App from './App.jsx';
 import './index.css';
 
-// const basename = import.meta.env.DEV ? '/' : '/challenge-frontend-nectia/';
 const basename = '/';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

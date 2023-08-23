@@ -8,11 +8,5 @@ export default defineConfig(({ command }) => {
     base: '/',
   };
 
-  /*
-  if (command !== 'serve') {
-    config.base = '/challenge-frontend-nectia/'
-  }
-  */
-
   return config;
 });
